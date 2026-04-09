@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>База знаний по кибербезопасности</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-flex">
+                <div class="logo-area">
+                    <h1>🛡️ База знаний по кибербезопасности</h1>
+                    <p>Защити свой бизнес от киберугроз — просто и понятно</p>
+                </div>
+                <div class="profile-area">
+                    <a href="profile.html" id="profile-link-header" class="profile-header-btn">👤 Войти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="index.html" class="active">🏠 Главная</a>
+            <a href="articles.html">📚 База знаний</a>
+            <a href="test.html">📝 Тесты</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Кибербезопасность для малого бизнеса</h2>
+            <p>43% кибератак направлены на малый бизнес. 60% компаний закрываются в течение 6 месяцев после атаки.</p>
+            <div id="welcome-message" class="welcome-badge"></div>
+        </section>
+
+        <section class="categories">
+            <div class="card" onclick="location.href='articles.html?cat=threats'">
+                <h3>⚠️ Виды угроз</h3>
+                <p>Фишинг, вирусы, DDoS, соц. инженерия</p>
+            </div>
+            <div class="card" onclick="location.href='articles.html?cat=protection'">
+                <h3>🛡️ Как защититься</h3>
+                <p>2FA, бэкапы, антивирусы, шифрование</p>
+            </div>
+            <div class="card" onclick="location.href='articles.html?cat=news'">
+                <h3>📰 Новости кибербезопасности</h3>
+                <p>Актуальные угрозы и тренды 2024</p>
+            </div>
+        </section>
+
+        <section class="latest-articles">
+            <h2>🔥 Популярные статьи</h2>
+            <div id="popular-articles" class="articles-list"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 База знаний по кибербезопасности | Учебный проект</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

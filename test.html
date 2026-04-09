@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тесты - База знаний</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-flex">
+                <div class="logo-area">
+                    <h1>🛡️ База знаний по кибербезопасности</h1>
+                    <p>Защити свой бизнес от киберугроз — просто и понятно</p>
+                </div>
+                <div class="profile-area">
+                    <a href="profile.html" id="profile-link-header" class="profile-header-btn">👤 Войти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="index.html">🏠 Главная</a>
+            <a href="articles.html">📚 База знаний</a>
+            <a href="test.html" class="active">📝 Тесты</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <h2>📝 Выбери уровень</h2>
+            <p>Проверь свои знания кибербезопасности</p>
+        </section>
+
+        <div class="levels-container" id="levels-container">
+            <div class="level-card" onclick="startTest('beginner')">
+                <h3>🌱 Новичок</h3>
+                <p>5 базовых вопросов</p>
+                <span class="level-badge easy">Легкий</span>
+            </div>
+            <div class="level-card" onclick="startTest('professional')">
+                <h3>⚔️ Профи</h3>
+                <p>5 продвинутых вопросов</p>
+                <span class="level-badge medium">Средний</span>
+            </div>
+            <div class="level-card" onclick="startTest('expert')">
+                <h3>🧠 Эксперт</h3>
+                <p>5 сложных вопросов</p>
+                <span class="level-badge hard">Сложный</span>
+            </div>
+        </div>
+
+        <div id="test-container" style="display:none"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 База знаний по кибербезопасности | Учебный проект</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

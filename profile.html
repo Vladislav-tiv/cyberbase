@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - База знаний</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-flex">
+                <div class="logo-area">
+                    <h1>🛡️ База знаний по кибербезопасности</h1>
+                    <p>Защити свой бизнес от киберугроз — просто и понятно</p>
+                </div>
+                <div class="profile-area">
+                    <a href="profile.html" id="profile-link-header" class="profile-header-btn">👤 Профиль</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="index.html">🏠 Главная</a>
+            <a href="articles.html">📚 База знаний</a>
+            <a href="test.html">📝 Тесты</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div id="profile-loggedin" style="display:none">
+            <div class="profile-card">
+                <h2>👤 Добро пожаловать, <span id="profile-username"></span>!</h2>
+                <p>📧 Email: <span id="profile-email"></span></p>
+                <p>📅 Дата регистрации: <span id="profile-date"></span></p>
+                <p>📚 Прочитано статей: <span id="profile-read-count">0</span></p>
+                <p>🎯 Пройдено тестов: <span id="profile-test-count">0</span></p>
+                <p>🏆 Средний результат: <span id="profile-avg-score">0</span>%</p>
+                <button onclick="logout()" class="logout-btn">🚪 Выход</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 История просмотров</h3>
+                <div id="history-list" class="history-list"></div>
+            </div>
+
+            <div class="card">
+                <h3>📊 Результаты тестов</h3>
+                <div id="test-results-list" class="history-list"></div>
+            </div>
+        </div>
+
+        <div id="profile-guest" style="display:none; text-align:center; padding:50px">
+            <h2>🔐 Требуется вход</h2>
+            <p>Чтобы увидеть личный кабинет, войдите или зарегистрируйтесь.</p>
+            <button onclick="location.href='login.html'" class="auth-btn" style="margin-top:20px">Войти</button>
+            <button onclick="location.href='register.html'" class="auth-btn" style="margin-top:20px; background:#28a745">Регистрация</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 База знаний по кибербезопасности | Учебный проект</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

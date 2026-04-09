@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>База знаний - CyberBase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-flex">
+                <div class="logo-area">
+                    <h1>🛡️ База знаний по кибербезопасности</h1>
+                    <p>Защити свой бизнес от киберугроз — просто и понятно</p>
+                </div>
+                <div class="profile-area">
+                    <a href="profile.html" id="profile-link-header" class="profile-header-btn">👤 Войти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="index.html">🏠 Главная</a>
+            <a href="articles.html" class="active">📚 База знаний</a>
+            <a href="test.html">📝 Тесты</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <h2>📚 Полная база знаний</h2>
+            <p>15 статей по кибербезопасности. Нажми на любую, чтобы прочитать полностью.</p>
+        </section>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-cat="all">📖 Все статьи</button>
+            <button class="filter-btn" data-cat="threats">⚠️ Угрозы</button>
+            <button class="filter-btn" data-cat="protection">🛡️ Защита</button>
+            <button class="filter-btn" data-cat="news">📰 Новости</button>
+        </div>
+
+        <div class="card">
+            <h3>🔍 Поиск</h3>
+            <input type="text" id="search-input" class="search-box" placeholder="Поиск по статьям...">
+        </div>
+
+        <div id="articles-container" class="articles-list"></div>
+    </main>
+
+    <div id="article-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeArticle()">&times;</span>
+            <div id="full-article-content"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 База знаний по кибербезопасности | Учебный проект</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
