@@ -191,36 +191,99 @@ function logout() {
     window.location.href = 'index.html';
 }
 
+// ========== РЕГИСТРАЦИЯ С ПОЛНОЙ ПРОВЕРКОЙ ==========
 function doRegister() {
+    // Получаем значения полей
     const username = document.getElementById('reg-username').value.trim();
     const email = document.getElementById('reg-email').value.trim();
     const password = document.getElementById('reg-password').value;
     const password2 = document.getElementById('reg-password2').value;
     const errorDiv = document.getElementById('reg-error');
     
-    if (!username || !email || !password) {
-        errorDiv.innerText = 'Заполните все поля';
+    // Очищаем предыдущую ошибку
+    errorDiv.innerText = '';
+    
+    // ========== ПРОВЕРКА ИМЕНИ ПОЛЬЗОВАТЕЛЯ ==========
+    if (!username) {
+        errorDiv.innerText = '❌ Введите имя пользователя';
         return;
     }
+    
+    if (username.length < 3) {
+        errorDiv.innerText = '❌ Имя пользователя должно быть не менее 3 символов';
+        return;
+    }
+    
+    if (username.length > 20) {
+        errorDiv.innerText = '❌ Имя пользователя не должно превышать 20 символов';
+        return;
+    }
+    
+    // Разрешаем только буквы (русские и английские), цифры, подчеркивание и точку
+    const usernameRegex = /^[a-zA-Zа-яА-Я0-9_.]+$/;
+    if (!usernameRegex.test(username)) {
+        errorDiv.innerText = '❌ Имя пользователя может содержать только буквы, цифры, _ и .';
+        return;
+    }
+    
+    // ========== ПРОВЕРКА EMAIL ==========
+    if (!email) {
+        errorDiv.innerText = '❌ Введите email';
+        return;
+    }
+    
+    // Стандартная проверка email формата
+    const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        errorDiv.innerText = '❌ Введите корректный email (например: user@example.com)';
+        return;
+    }
+    
+    // ========== ПРОВЕРКА ПАРОЛЯ ==========
+    if (!password) {
+        errorDiv.innerText = '❌ Введите пароль';
+        return;
+    }
+    
+    if (password.length < 6) {
+        errorDiv.innerText = '❌ Пароль должен быть не менее 6 символов';
+        return;
+    }
+    
+    if (password.length > 50) {
+        errorDiv.innerText = '❌ Пароль не должен превышать 50 символов';
+        return;
+    }
+    
+    // Проверка сложности пароля (хотя бы одна цифра и одна буква)
+    const hasLetter = /[a-zA-Zа-яА-Я]/.test(password);
+    const hasDigit = /\d/.test(password);
+    
+    if (!hasLetter || !hasDigit) {
+        errorDiv.innerText = '❌ Пароль должен содержать хотя бы одну букву и одну цифру';
+        return;
+    }
+    
+    // ========== ПРОВЕРКА ПОВТОРА ПАРОЛЯ ==========
     if (password !== password2) {
-        errorDiv.innerText = 'Пароли не совпадают';
-        return;
-    }
-    if (password.length < 4) {
-        errorDiv.innerText = 'Пароль должен быть не менее 4 символов';
+        errorDiv.innerText = '❌ Пароли не совпадают';
         return;
     }
     
+    // ========== ПРОВЕРКА НА СУЩЕСТВУЮЩЕГО ПОЛЬЗОВАТЕЛЯ ==========
     const users = getUsers();
+    
     if (users.find(u => u.username === username)) {
-        errorDiv.innerText = 'Пользователь с таким именем уже существует';
-        return;
-    }
-    if (users.find(u => u.email === email)) {
-        errorDiv.innerText = 'Пользователь с таким email уже существует';
+        errorDiv.innerText = '❌ Пользователь с таким именем уже существует';
         return;
     }
     
+    if (users.find(u => u.email === email)) {
+        errorDiv.innerText = '❌ Пользователь с таким email уже существует';
+        return;
+    }
+    
+    // ========== ВСЕ ПРОВЕРКИ ПРОЙДЕНЫ - СОЗДАЕМ ПОЛЬЗОВАТЕЛЯ ==========
     const newUser = {
         username: username,
         email: email,
@@ -233,6 +296,9 @@ function doRegister() {
     users.push(newUser);
     saveUsers(users);
     setCurrentUser({ username: username, email: email });
+    
+    // Показываем сообщение об успехе и перенаправляем
+    alert('✅ Регистрация успешна! Добро пожаловать, ' + username + '!');
     window.location.href = 'profile.html';
 }
 
@@ -241,6 +307,20 @@ function doLogin() {
     const password = document.getElementById('login-password').value;
     const errorDiv = document.getElementById('login-error');
     
+    // Очищаем предыдущую ошибку
+    errorDiv.innerText = '';
+    
+    // Проверка на пустые поля
+    if (!username) {
+        errorDiv.innerText = '❌ Введите имя пользователя';
+        return;
+    }
+    
+    if (!password) {
+        errorDiv.innerText = '❌ Введите пароль';
+        return;
+    }
+    
     const users = getUsers();
     const user = users.find(u => u.username === username && u.password === password);
     
@@ -248,7 +328,7 @@ function doLogin() {
         setCurrentUser({ username: user.username, email: user.email });
         window.location.href = 'profile.html';
     } else {
-        errorDiv.innerText = 'Неверное имя пользователя или пароль';
+        errorDiv.innerText = '❌ Неверное имя пользователя или пароль';
     }
 }
 
