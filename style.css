@@ -461,3 +461,12 @@ footer {
         width: auto;
     }
 }
+.error-message {
+    color: #e94560;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    background: rgba(233,69,96,0.1);
+    padding: 10px;
+    border-radius: 8px;
+}
